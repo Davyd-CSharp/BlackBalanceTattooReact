@@ -1,0 +1,17 @@
+.my-input {
+    width: 100%;
+    margin: 20px 0px;
+    height: 56px;
+    width: 100%;
+    border-radius: 12px;
+    font-family: Manrope;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    color: #1D1F22;
+}
+
+.my-input .MuiFormHelperText-root {
+    text-align: right;
+}

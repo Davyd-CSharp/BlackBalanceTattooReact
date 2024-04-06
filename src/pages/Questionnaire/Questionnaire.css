@@ -1,0 +1,69 @@
+.questionnaire-page {
+    display: flex;
+    width: calc(100vw - 32px);
+    height: calc(100vh - 32px);
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 16px;
+}
+
+.logo-and-language {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-and-language .logo {
+    width: 220px;
+    height: 200px;
+    margin-left: 12px;
+}
+
+.language-selector {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90px;
+    height: 30px;
+}
+
+.questionnaire-title {    
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+}
+
+.questionnaire {
+    position: relative;
+    display: flex;
+    max-width: 480px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.questionnaire-progress {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.questionnaire-progress .MuiStepper-root {
+    width: 100%;
+}
+
+.questionnaire-progress-stepper .step .Mui-active .MuiSvgIcon-root circle{
+    fill: black;
+}
+
+.questionnaire-progress-stepper .step .MuiStepIcon-root.Mui-completed {
+    fill: black;
+}

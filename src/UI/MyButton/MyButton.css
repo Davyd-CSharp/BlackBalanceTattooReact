@@ -1,0 +1,8 @@
+.my-button {
+    background-color: black;
+    border-radius: 12px;
+}
+
+.my-button:hover {
+    background-color: black;
+}
