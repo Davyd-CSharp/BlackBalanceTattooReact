@@ -8,6 +8,7 @@ interface MyButtonProps {
     label: string,
     startIcon?: {},
     className: string | undefined
+    disabled?: boolean
 }
 
 const MyButton = ({
@@ -16,11 +17,13 @@ const MyButton = ({
     label,
     startIcon = {},
     className,
+    disabled = false,
     ...props
 } : MyButtonProps) => {
     return (
         <Button
             {...props}
+            disabled={disabled}
             className={className}
             onClick={onClick}
             variant={variant}

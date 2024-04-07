@@ -23,5 +23,8 @@
     "successCompleteInformationParagraph": "Thank you for choosing us.",    
     "failedCompleteInformationHeader": "You did not successfully complete the questionnaire.",
     "failedCompleteInformationParagraph": "Contact us to know details.",
-    "required": "Required"
+    "required": "Required",
+    "poland": "Poland",
+    "germany": "Germany",
+    "ukraine": "Ukraine"
 }

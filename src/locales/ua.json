@@ -23,5 +23,8 @@
     "successCompleteInformationParagraph": "Дякуємо що обрали нас",    
     "failedCompleteInformationHeader": "Ви не успішно завершили опитування.",
     "failedCompleteInformationParagraph": "Зв'яжіться з нами, щоб дізнатися деталі.",
-    "required": "Обов'язкове поле"
+    "required": "Обов'язкове поле",
+    "poland": "Польща",
+    "germany": "Німеччина",
+    "ukraine": "Україна"
 } 

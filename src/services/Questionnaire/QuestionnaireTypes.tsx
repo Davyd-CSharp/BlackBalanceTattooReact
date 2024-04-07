@@ -14,6 +14,7 @@ export interface QuestionnaireDetailDTO {
 export interface QuestionDTO {
     QuestionId: string,
     Name: string,
+    Order: number,
     AnswerType: AnswerType,
     Answers: AnswerDTO[]
 }
@@ -26,7 +27,8 @@ export enum AnswerType {
 export interface AnswerDTO {
     AnswerId: string,
     Value: string,
-    IsCorrect: boolean 
+    IsCorrect: boolean,
+    Order: number
 }
 
 export interface UseGetQuestionnaireByIdProps {
@@ -46,7 +48,7 @@ export interface UsePostQuestionnaireProps {
     email : string,
     isEmailNewsletterEnable : boolean,
     isPhoneNewsletterEnable : boolean,
-    country : string,
+    country : number,
     city : string,
     questionnaireId : string,
     questionnaireAnswers : QuestionnaireAnswer[],

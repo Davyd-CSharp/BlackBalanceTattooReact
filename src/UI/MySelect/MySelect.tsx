@@ -7,7 +7,8 @@ interface MySelectProps {
     label: string,
     fullWidth: boolean,
     onChange: (e: SelectChangeEvent) => void,
-    disabled?: boolean
+    disabled?: boolean,
+    className?: string
 }
 
 interface SelectOption {
@@ -22,6 +23,7 @@ const MySelect = ({
     fullWidth,
     onChange,
     disabled = false,
+    className = "my-select",
     ...props
 } : MySelectProps) => {    
 
@@ -33,14 +35,15 @@ const MySelect = ({
             setDefaultOption(findDefaultValue);
             return;
         }          
-    }, [])
+    }, [options])
 
     useEffect(() => {
-        setValue(defaultOption?.Value ?? "0");
+        setValue(defaultOption?.Value ?? "0");        
     }, [defaultOption]);
     return (
-        <div className="my-select-form">
+        <div className={className}>
             <FormControl 
+                className="my-select-form"
                 fullWidth={fullWidth}
                 disabled={disabled}>
                 <InputLabel>{label}</InputLabel>

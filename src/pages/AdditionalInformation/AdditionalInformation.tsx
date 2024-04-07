@@ -13,7 +13,6 @@ import { init } from "i18next";
 import { RootState } from "../../stores";
 
 interface InitialValues {
-    Description: string,
     RefferalSource: number,
     IsProcedureExecutionAccepted: boolean
 }
@@ -36,7 +35,6 @@ const AdditionalInformation = ({
 
     const setNextStep = () => {
         dispatch(setAdditionalData({
-            Description: initialValues.Description,
             ReferralSource: initialValues.RefferalSource,
             IsProcedureExecutionAccepted: initialValues.IsProcedureExecutionAccepted
         }));
@@ -48,7 +46,6 @@ const AdditionalInformation = ({
 
     useEffect(() => {
         setInitialValues({
-            Description: currentUser.Description,
             RefferalSource: currentUser.ReferralSource,
             IsProcedureExecutionAccepted: currentUser.IsProcedureExecutionAccepted
         })
@@ -73,22 +70,6 @@ const AdditionalInformation = ({
 
     return (
         <div className="additional-information">
-            <div className="additional-information-input">
-                <MyInput 
-                    label={t("description")}
-                    required={false}
-                    text=""
-                    multiline
-                    rows={5}
-                    maxRows={5}
-                    onChange={e => {
-                        setInitialValues({
-                            ...initialValues,
-                            Description: e.target.value
-                        })
-                    }}
-                />
-            </div>
             <div className="additional-information-referral-source">
                 <MySelect
                     label={t("referralSource")}

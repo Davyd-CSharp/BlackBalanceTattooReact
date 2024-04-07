@@ -5,7 +5,7 @@ export interface UserDTO {
     Gender: number,
     PhoneNumber: string,
     Email: string,
-    Country: string,
+    Country: number,
     City: string,
     IsEmailNewsletterEnable: boolean,
     IsPhoneNewsletterEnable: boolean

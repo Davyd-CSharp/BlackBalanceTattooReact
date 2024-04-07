@@ -9,6 +9,7 @@ import Error from "../../assets/images/error.png";
 import Success from "../../assets/images/success.png";
 import { useTranslation } from "react-i18next";
 import { UsePostQuestionnaireProps } from "../../services/Questionnaire/QuestionnaireTypes";
+import { CircularProgress } from "@mui/material";
 
 const CompleteQuestionnaire = () => {
     const completedQuestionnaire = useSelector(( state: RootState ) => state.questionnaire.CompletedQuestionnaire);
@@ -36,7 +37,6 @@ const CompleteQuestionnaire = () => {
                     CustomeText: item.Value
                 }
             }),
-        description: currentUser.Description,
         isProcedureExecutionAccepted: currentUser.IsProcedureExecutionAccepted,
         referralSource: currentUser.ReferralSource
     } as UsePostQuestionnaireProps);
@@ -53,16 +53,21 @@ const CompleteQuestionnaire = () => {
 
     return (
         <div className="complete-questionnaire">
-            <div className="icon-info">
-                <img
-                    className="icon"
-                    src={isSuccess ? Success : Error}
-                />
-            </div>
-            <div className="complete-information">
-                <h1>{isSuccess ? t("successCompleteInformationHeader") : t("failedCompleteInformationHeader")}</h1>
-                <p>{isSuccess ? t("successCompleteInformationParagraph") : t("failedCompleteInformationParagraph")}</p>
-            </div>
+            {result.isLoading ? 
+                <CircularProgress /> : 
+                <>
+                    <div className="icon-info">
+                        <img
+                            className="icon"
+                            src={(result.error.length == 0 && isSuccess) ? Success : Error}
+                        />
+                    </div>
+                    <div className="complete-information">
+                        <h1>{(result.error.length == 0 && isSuccess) ? t("successCompleteInformationHeader") : t("failedCompleteInformationHeader")}</h1>
+                        <p>{(result.error.length == 0 && isSuccess) ? t("successCompleteInformationParagraph") : t("failedCompleteInformationParagraph")}</p>
+                    </div>
+                </>
+            }
         </div>
     );
 }

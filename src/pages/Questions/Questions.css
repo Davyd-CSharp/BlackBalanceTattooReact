@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.question-select {
+    margin: 16px 0;
+}
+
 .questions-buttons {
     display: flex;
     margin-top: 16px;

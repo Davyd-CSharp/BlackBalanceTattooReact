@@ -26,9 +26,8 @@ interface UserPrimaryData {
     PhoneNumber: string,
     IsEmailNewsletterEnable: boolean,
     IsPhoneNewsletterEnable: boolean,
-    Country: string,
+    Country: number,
     City: string,
-    Description: string,
     ReferralSource: ReferralSource
     IsProcedureExecutionAccepted: boolean
 }
@@ -42,12 +41,11 @@ interface PrimaryDataAction {
     PhoneNumber: string,
     IsEmailNewsletterEnable: boolean,
     IsPhoneNewsletterEnable: boolean,
-    Country: string,
+    Country: number,
     City: string,
 }
 
 interface AdditionalDataAction {
-    Description: string,
     ReferralSource: ReferralSource,
     IsProcedureExecutionAccepted: boolean
 }
@@ -62,9 +60,8 @@ const initialState = {
         PhoneNumber: "",
         IsEmailNewsletterEnable: false,
         IsPhoneNewsletterEnable: false,
-        Country: "",
+        Country: 0,
         City: "",
-        Description: "",
         ReferralSource: ReferralSource.Instagram,
         IsProcedureExecutionAccepted: false
     } as UserPrimaryData
@@ -84,7 +81,6 @@ const userPrimaryDataSlice = createSlice({
         setAdditionalData(state, action: PayloadAction<AdditionalDataAction>) {
             state.CurrentUser = {
                 ...state.CurrentUser,
-                Description: action.payload.Description,
                 ReferralSource: action.payload.ReferralSource,
                 IsProcedureExecutionAccepted: action.payload.IsProcedureExecutionAccepted
             } as UserPrimaryData

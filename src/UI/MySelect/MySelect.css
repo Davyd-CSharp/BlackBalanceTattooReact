@@ -1,7 +1,7 @@
-.my-select {
-
-}
 .my-select-form {
     position: relative;
-    margin: 16px 0;
+}
+
+.my-select {
+    width: 100%;
 }

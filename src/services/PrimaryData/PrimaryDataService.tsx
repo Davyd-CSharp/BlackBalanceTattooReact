@@ -24,6 +24,17 @@ const useGetLanguages = () => {
     return response;
 }
 
+const useGetCountries = () => {
+    const response = useAxios<EnumDTO>({
+        url: "api/System/Countries",
+        method: "get",
+        body: {},
+        headers: {},
+        executeImmediate: true
+    });
+    return response;
+}
+
 const useGetReferralSources = () => {
     const response = useAxios<EnumDTO>({
         url: "api/System/ReferralSource",
@@ -49,4 +60,4 @@ const useGetUserDetailByIdentifier = ({
     return response;
 }
 
-export {useGetGenders, useGetLanguages, useGetReferralSources, useGetUserDetailByIdentifier}; 
+export {useGetGenders, useGetLanguages, useGetReferralSources, useGetUserDetailByIdentifier, useGetCountries}; 

@@ -23,5 +23,8 @@
     "successCompleteInformationParagraph": "Dziękujemy, że nas wybraliście.",    
     "failedCompleteInformationHeader": "Nie udało ci się pomyślnie zakończyć ankiety.",
     "failedCompleteInformationParagraph": "Skontaktuj się z nami, aby poznać szczegóły.",
-    "required": "Pole wymagane"
+    "required": "Pole wymagane",
+    "poland": "Polska",
+    "germany": "Niemcy",
+    "ukraine": "Ukraina"
 }

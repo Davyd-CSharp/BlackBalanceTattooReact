@@ -76,12 +76,14 @@ const Questions = ({
                             QuestionId: question.QuestionId,
                             Name: question.Name,
                             AnswerType: question.AnswerType,
+                            Order: question.Order,
                             Answers: question.Answers
                                 .map(answer => {
                                     return {
                                         AnswerId: answer.AnswerId ?? "",
                                         Value: answer.Value,
                                         IsCorrect: answer.IsCorrect,
+                                        Order: answer.Order
                                     }
                                 })
                         }
@@ -186,7 +188,8 @@ const Questions = ({
                 options={chooseQuestionnaireOptions}
             />
             {
-                questionnaireDetail.Questions?.map(item => {
+                questionnaireDetail.Questions?.sort((a, b) => b.Order - a.Order)
+                    .map(item => {
                     const previousValue = completedQuestionnaire?.CompletedQuestions?.find(c => c.QuestionId == item.QuestionId);
                     if(item.AnswerType == 0)
                     {
@@ -205,21 +208,24 @@ const Questions = ({
                     return <MySelect 
                         label={item.Name}
                         fullWidth
+                        className="question-select"
                         onChange={completeSelectQuestion} 
                         options={
-                            item.Answers.map(c => {
-                                return {
-                                    Value: JSON.stringify({
-                                        AnswerId: c.AnswerId,
-                                        Value: c.Value,
-                                        IsCorrect: c.IsCorrect,
-                                        QuestionId: item.QuestionId,
-                                        QuestionName: item.Name
-                                    }),
-                                    Label: c.Value,
-                                    Default: previousValue?.AnswerId == c.AnswerId
-                                }
-                            })
+                            item.Answers.sort((a, b) => b.Order - a.Order)
+                                .reverse()
+                                .map(c => {
+                                    return {
+                                        Value: JSON.stringify({
+                                            AnswerId: c.AnswerId,
+                                            Value: c.Value,
+                                            IsCorrect: c.IsCorrect,
+                                            QuestionId: item.QuestionId,
+                                            QuestionName: item.Name
+                                        }),
+                                        Label: c.Value,
+                                        Default: previousValue?.AnswerId == c.AnswerId
+                                    }
+                                })
                         }
                     />
                 })
@@ -232,7 +238,7 @@ const Questions = ({
                     className="back-button"
                     onClick={setPreviousStep}
                 />
-                <MyButton 
+                <MyButton                                    
                     label={t("continue")}
                     variant="contained"
                     className="next-button"

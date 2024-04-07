@@ -7,12 +7,10 @@ import MySelect, { SelectOption } from "../../UI/MySelect/MySelect";
 import MyButton from "../../UI/MyButton/MyButton";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrimaryData } from '../../stores/slicers/user'
-import { useGetGenders, useGetUserDetailByIdentifier } from "../../services/PrimaryData/PrimaryDataService";
+import { useGetCountries, useGetGenders, useGetUserDetailByIdentifier } from "../../services/PrimaryData/PrimaryDataService";
 import { useTranslation } from "react-i18next";
 import dayjs from 'dayjs';
 import { RootState } from "../../stores";
-import { Formik } from "formik";
-import { primaryDataValidationSchema } from "../../utils/validations/primaryDataValidationSchema";
 import { init } from "i18next";
 
 interface PrimaryDataProps {
@@ -27,7 +25,7 @@ interface InitialValues {
     Name: string,
     PhoneNumber: string,
     Email: string,
-    Country: string,
+    Country: number,
     City: string,
     Gender: number,
     IsEmailNewsletterEnable: boolean,
@@ -48,9 +46,12 @@ const PrimaryData = ({
     const [initialValues, setInitialValues] = useState<InitialValues>({} as InitialValues); 
     const [valuesErrors, setValuesErrors] = useState<InitialValues>({} as InitialValues); 
     const [genderOptions, setGenderOptions] = useState<SelectOption[]>(); 
+    const [countryOptions, setCountryOptions] = useState<SelectOption[]>(); 
     const userDetail = useGetUserDetailByIdentifier({
         Identifier: initialValues.Passport
     })
+
+    const countries = useGetCountries()
     
     const setNextStep = () => {
         if(!validateInputs()) {
@@ -72,6 +73,15 @@ const PrimaryData = ({
         }));        
         setNextPage(step + 1);
     }
+
+    useEffect(() => {
+        setInitialValues({
+            ...currentUser,          
+            Passport: currentUser.PassportSeries,
+            IsPhoneNewsletterEnable: currentUser.IsPhoneNewsletterEnable
+        });
+    }, [currentUser]);
+
     useEffect(() => {        
         if(response) {
             setGenderOptions(
@@ -85,15 +95,23 @@ const PrimaryData = ({
                         };
             }));
         }
-    }, [response, currentUser, chooseLanguage])
+    }, [response, initialValues])
 
-    useEffect(() => {
-        setInitialValues({
-            ...currentUser,          
-            Passport: currentUser.PassportSeries,
-            IsPhoneNewsletterEnable: currentUser.IsPhoneNewsletterEnable
-        });
-    }, [currentUser]);
+    useEffect(() => {        
+        if(countries.response) {
+            setCountryOptions(
+                countries.response
+                    .Values
+                    .map(c => {
+                        const translateLabel = t(c.Name.toLowerCase());
+                        return {
+                            Value: c.Value.toString(),
+                            Label: translateLabel,
+                            Default: initialValues.Country == c.Value                        
+                        };
+            }));
+        }
+    }, [countries.response, initialValues])
 
     const handleOnBlurPassportInput = async () => {
         await userDetail.fetchData();
@@ -109,7 +127,7 @@ const PrimaryData = ({
                 IsPhoneNewsletterEnable: userDetail.response.IsPhoneNewsletterEnable,
                 IsEmailNewsletterEnable: userDetail.response.IsEmailNewsletterEnable
             });
-        }
+        }          
     }, [userDetail.response])
 
     const validateInputs = () => {
@@ -155,14 +173,6 @@ const PrimaryData = ({
             setValuesErrors(prev => ({
                 ...prev,
                 PhoneNumber: t("invalidPhoneNumber")
-            }));
-            isValid = false;
-        }
-        
-        if(!initialValues.Country.trim()) {
-            setValuesErrors(prev => ({
-                ...prev,
-                Country: t("required")
             }));
             isValid = false;
         }
@@ -256,20 +266,17 @@ const PrimaryData = ({
                 required />
                 
             <div className="country-and-city">
-                <MyInput 
-                    error={valuesErrors.Country?.trim() ? true : false}
-                    helperText={valuesErrors.Country}
+                <MySelect 
+                    fullWidth
                     label={t("country")}
-                    text={initialValues.Country}
                     className="left-input" 
+                    options={countryOptions}
                     onChange={e => {
-                    setInitialValues({
-                        ...initialValues,
-                        Country: e.target.value,
+                        setInitialValues({
+                            ...initialValues,
+                            Country: Number(e.target.value)
                     })
-                }}
-                    variant="outlined"
-                    required />
+                    }}/>
                 <MyInput 
                     helperText={valuesErrors.City}
                     error={valuesErrors.City?.trim() ? true : false}
