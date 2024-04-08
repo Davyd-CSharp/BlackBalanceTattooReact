@@ -2,6 +2,20 @@
     position: relative;
 }
 
+.my-select .my-select-label {
+    position: relative;
+    top: -0px;
+    left: 0;
+    margin-left: 0;
+}
+
+.my-select-form .my-select-label {
+    position: relative;
+    top: -0px;
+    left: 0;
+    margin-left: 0;
+}
+
 .my-select {
     width: 100%;
 }

@@ -3,13 +3,13 @@ import './Questionnaire.css';
 //@ts-ignore
 import Logo  from '../../assets/images/Logo.png';
 import { SelectChangeEvent, Step, StepLabel, Stepper } from "@mui/material";
-import PrimaryData from "../PrimaryData/PrimaryData";
+import PrimaryData from "../../components/PrimaryData/PrimaryData";
 import MySelect from "../../UI/MySelect/MySelect";
-import Questions from "../Questions/Questions";
-import AdditionalInformation from "../AdditionalInformation/AdditionalInformation";
+import Questions from "../../components/Questions/Questions";
+import AdditionalInformation from "../../components/AdditionalInformation/AdditionalInformation";
 import { useGetLanguages } from "../../services/PrimaryData/PrimaryDataService";
 import { useTranslation } from "react-i18next";
-import CompleteQuestionnaire from "../CompleteQuestionnaire/CompleteQuestionnaire";
+import CompleteQuestionnaire from "../../components/CompleteQuestionnaire/CompleteQuestionnaire";
 import type { SelectOption } from "../../UI/MySelect/MySelect";
 
 const Questionnaire = () => {

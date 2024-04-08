@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, FormHelperText } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import './MySelect.css';
 
@@ -8,7 +8,8 @@ interface MySelectProps {
     fullWidth: boolean,
     onChange: (e: SelectChangeEvent) => void,
     disabled?: boolean,
-    className?: string
+    className?: string,
+    ableLongText?: boolean
 }
 
 interface SelectOption {
@@ -24,6 +25,7 @@ const MySelect = ({
     onChange,
     disabled = false,
     className = "my-select",
+    ableLongText = false,
     ...props
 } : MySelectProps) => {    
 
@@ -46,10 +48,11 @@ const MySelect = ({
                 className="my-select-form"
                 fullWidth={fullWidth}
                 disabled={disabled}>
-                <InputLabel>{label}</InputLabel>
+                <FormHelperText
+                    className="my-select-label"
+                >{label}</FormHelperText>
                 <Select
                     {...props}
-                    label={label}     
                     className="my-select"
                     onChange={e => {
                         setValue(e.target.value);

@@ -42,6 +42,7 @@ const MyInput = ({
                     setDefaultValue(e.target.value);
                     onChange(e);
                 }}
+                hiddenLabel={false}
                 variant="outlined"
                 required={required}
                 rows={rows} 

@@ -5,10 +5,10 @@
 }
 
 .questionnaire-primary-data .questionnaire-primary-data-select {
-    margin: 8px 0;
 }
 
 .country-and-city {
+    position: relative;
     margin: 16px 0;
     height: 56px;
     display: flex;
@@ -17,6 +17,8 @@
 }
 
 .country-and-city .left-input {
+    position: relative;
+    top: -22px;
     width: 50%;
     height: 100%;
 }
@@ -28,7 +30,6 @@
 
 .questionnaire-primary-data .data-picker-full-width {
     width: 100%;
-    margin: 8px 0;
 }
 
 .questionnaire-primary-data-marketing {

@@ -42,8 +42,6 @@ const CompleteQuestionnaire = () => {
     } as UsePostQuestionnaireProps);
 
     useEffect(() => {
-        console.log("Questionnaire: ", completedQuestionnaire);
-        console.log("User: ", currentUser);
         setIsSuccess(!completedQuestionnaire.CompletedQuestions.some(item => !item.IsCorrect));
     }, [completedQuestionnaire, currentUser])
 

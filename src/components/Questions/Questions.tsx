@@ -210,6 +210,7 @@ const Questions = ({
                         fullWidth
                         className="question-select"
                         onChange={completeSelectQuestion} 
+                        ableLongText
                         options={
                             item.Answers.sort((a, b) => b.Order - a.Order)
                                 .reverse()
