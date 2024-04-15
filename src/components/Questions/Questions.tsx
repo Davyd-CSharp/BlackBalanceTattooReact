@@ -197,6 +197,7 @@ const Questions = ({
                             label={item.Name}   
                             text={previousValue?.Value ?? ""}                         
                             required={false}
+                            isQuestion
                             onChange={e => 
                                 completeTextQuestion(
                                     item.QuestionId,

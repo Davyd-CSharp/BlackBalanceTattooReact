@@ -1,6 +1,6 @@
 .my-input {
+    position: static;
     margin: 20px 0px;
-    height: 56px;
     border-radius: 12px;
     font-family: Manrope;
     font-size: 14px;
@@ -12,4 +12,17 @@
 
 .my-input .MuiFormHelperText-root {
     text-align: right;
+}
+
+.my-input .my-input-label {
+    position: relative;
+    top: -0px;
+    left: 0;
+    margin-left: 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
 }

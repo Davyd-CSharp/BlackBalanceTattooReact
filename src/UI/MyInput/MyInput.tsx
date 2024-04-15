@@ -10,7 +10,8 @@ interface MyInputProps extends BaseTextFieldProps {
     maxRows?: number,
     text: string,
     rows?: number,
-    className?: string
+    className?: string,
+    isQuestion?: boolean
 } 
 
 const MyInput = ({
@@ -24,6 +25,7 @@ const MyInput = ({
     className = "",
     variant = 'standard',
     onBlur = () => {},
+    isQuestion = false,
     ...props
 } : MyInputProps) => {
 
@@ -34,10 +36,11 @@ const MyInput = ({
 
    return (
         <div className="my-input">
+            {isQuestion ? <label className="my-input-label">{label}</label> : <></>} 
             <TextField 
                 {...props}   
                 fullWidth
-                label={label}
+                label={isQuestion ? "" : label}
                 onChange={e => {
                     setDefaultValue(e.target.value);
                     onChange(e);
