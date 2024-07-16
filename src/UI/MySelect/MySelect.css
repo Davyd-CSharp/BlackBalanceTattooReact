@@ -14,6 +14,8 @@
     top: -0px;
     left: 0;
     margin-left: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .my-select {
