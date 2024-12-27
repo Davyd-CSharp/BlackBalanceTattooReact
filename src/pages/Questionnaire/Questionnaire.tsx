@@ -19,6 +19,7 @@ const Questionnaire = () => {
     const [languageOptions, setLanguageOptions] = useState<SelectOption[]>();
     const [language, setLanguage] = useState<number>(0);
     const [step, setStep] = useState(0);
+    const [isProcessingDataAccepted, setProcessingDataAccepted] = useState(false);
     
     const handleChangingLanguage = (e: SelectChangeEvent) => {
         var currentLanguage = languageOptions?.find(c => c.Value == e.target.value);
@@ -36,6 +37,8 @@ const Questionnaire = () => {
                 return <PrimaryData 
                     setNextPage={setStep}
                     step={0}
+                    setProcessingDataFlag={setProcessingDataAccepted}
+                    processingDataFlag={isProcessingDataAccepted}
                     chooseLanguage={language}
                 />
 
@@ -50,6 +53,7 @@ const Questionnaire = () => {
                 return <AdditionalInformation 
                     setNextPage={setStep}
                     step={2}
+                    isProcedureExecutionAccepted={isProcessingDataAccepted}
                 />
             case 3: 
                 return <CompleteQuestionnaire />

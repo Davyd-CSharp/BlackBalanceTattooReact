@@ -19,12 +19,14 @@ interface InitialValues {
 
 interface AdditionalInformationProps {
     setNextPage: (value: number) => void,
-    step: number
+    step: number,
+    isProcedureExecutionAccepted: boolean
 }
 
 const AdditionalInformation = ({
     setNextPage,
-    step
+    step,
+    isProcedureExecutionAccepted
 } : AdditionalInformationProps) => {
     const currentUser = useSelector((state : RootState) => state.user.CurrentUser);
     const { t } = useTranslation();
@@ -36,7 +38,7 @@ const AdditionalInformation = ({
     const setNextStep = () => {
         dispatch(setAdditionalData({
             ReferralSource: initialValues.RefferalSource,
-            IsProcedureExecutionAccepted: initialValues.IsProcedureExecutionAccepted
+            IsProcedureExecutionAccepted: isProcedureExecutionAccepted
         }));
         setNextPage(step + 1);
     }
@@ -83,16 +85,6 @@ const AdditionalInformation = ({
                     }}
                 />
             </div>
-            <MyCheckbox
-                onChange={e => {
-                    setInitialValues({
-                        ...initialValues,
-                        IsProcedureExecutionAccepted: e.target.checked
-                    });
-                }}
-                isChecked={initialValues.IsProcedureExecutionAccepted}
-                label="Accept to execution of procedure"
-            />
 
             <div className="additional-information-buttons">
                 <MyButton 

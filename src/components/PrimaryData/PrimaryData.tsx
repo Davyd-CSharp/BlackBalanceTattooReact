@@ -16,7 +16,9 @@ import { init } from "i18next";
 interface PrimaryDataProps {
     setNextPage: (value: number) => void,
     step: number,
-    chooseLanguage: number
+    chooseLanguage: number,
+    setProcessingDataFlag: (value: boolean) => void
+    processingDataFlag: boolean
 }
 
 interface InitialValues {
@@ -35,7 +37,9 @@ interface InitialValues {
 const PrimaryData = ({
     setNextPage,
     step,
-    chooseLanguage
+    chooseLanguage,
+    setProcessingDataFlag,
+    processingDataFlag
 } : PrimaryDataProps) => {    
     const { response } = useGetGenders();
 
@@ -293,6 +297,14 @@ const PrimaryData = ({
                     required />
             </div>   
 
+             <MyCheckbox 
+                label={t("acceptProcessingData")}
+                isChecked={processingDataFlag}
+                onChange={e => {
+                    setProcessingDataFlag(e.target.checked);
+                }}
+            />
+
             <MyCheckbox 
                 label={t("acceptEmailNewsletter")}
                 isChecked={initialValues.IsEmailNewsletterEnable}
@@ -318,6 +330,7 @@ const PrimaryData = ({
             <MyButton
                 label={t("continue")}
                 variant="contained" 
+                disabled={!processingDataFlag}
                 className="questionnaire-primary-data-button"     
                 onClick={setNextStep}        
             />
