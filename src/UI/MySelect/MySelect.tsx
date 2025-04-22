@@ -63,6 +63,9 @@ const MySelect = ({
                     {                    
                         options?.map(option => {
                             return <MenuItem 
+                                style={{
+                                    textWrap: 'wrap'
+                                }}
                                 key={option.Value}
                                 value={option.Value}>
                                 {option.Label}</MenuItem>

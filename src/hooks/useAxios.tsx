@@ -2,7 +2,8 @@ import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { ApiResponse } from "../services/Shared/SharedTypes";
 
-axios.defaults.baseURL = 'https://blackbalancetatto-api.azurewebsites.net';
+//axios.defaults.baseURL = 'https://blackbalancetatto-api.azurewebsites.net';
+axios.defaults.baseURL = 'https://localhost:7139';
 
 interface useAxiosProps {
     url: string,
